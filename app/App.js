@@ -4,7 +4,9 @@ import {TabNavigator} from 'react-navigation';
 import AppStatusBar from './components/AppStatusBar';
 import DecksView from './components/DecksView';
 import NewDeckView from './components/NewDeckView';
-import Header from "./components/Header";
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducer from "./reducers/reducers";
 
 const Tabs = TabNavigator({
   Decks: {
@@ -27,11 +29,12 @@ const Tabs = TabNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <AppStatusBar/>
-        {Platform.OS === 'ios' && (<Header title="My Decks"/>)}
-        <Tabs />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={styles.container}>
+          <AppStatusBar/>
+          <Tabs />
+        </View>
+      </Provider>
     );
   }
 }
@@ -40,5 +43,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
 });

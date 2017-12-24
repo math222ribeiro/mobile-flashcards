@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Platform} from 'react-native';
 
 const Header = (props) => {
   return (
-    <View style={styles.header}>
-      <Text style={styles.title}>{props.title}</Text>
-    </View>
+    Platform.OS === 'ios' && (
+      <View style={styles.header}>
+        <Text style={styles.title}>{props.title}</Text>
+      </View>
+    )
   )
 };
 
