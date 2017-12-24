@@ -4,8 +4,8 @@ import {Constants} from 'expo';
 
 const AppStatusBar = () => {
   return (
-    <View style={{height: Constants.statusBarHeight}}>
-      <StatusBar />
+    <View style={{height: Constants.statusBarHeight, backgroundColor: 'black'}}>
+      <StatusBar barStyle='light-content'/>
     </View>
   )
 };
