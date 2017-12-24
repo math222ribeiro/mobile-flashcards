@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   button: {
-    marginTop: 40,
+    marginBottom: 30,
+    backgroundColor: '#000'
   },
   input: {
     fontSize: 22
