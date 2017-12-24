@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import {TabNavigator} from 'react-navigation';
 import AppStatusBar from './components/AppStatusBar';
 import DecksView from './components/DecksView';
 import NewDeckView from './components/NewDeckView';
+import Header from "./components/Header";
 
 const Tabs = TabNavigator({
   Decks: {
@@ -15,7 +16,11 @@ const Tabs = TabNavigator({
 },
   {
     animationEnabled: true,
-    swipeEnabled: true
+    swipeEnabled: true,
+    tabBarOptions: {
+      activeTintColor: Platform.OS === 'ios' ? '#000' : '#FFF',
+      style: Platform.OS === 'ios' ? {} : {backgroundColor: '#000'}
+    },
   }
 );
 
@@ -24,6 +29,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <AppStatusBar/>
+        {Platform.OS === 'ios' && (<Header title="My Decks"/>)}
         <Tabs />
       </View>
     );
@@ -33,5 +39,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
+
 });
