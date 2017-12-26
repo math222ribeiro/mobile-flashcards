@@ -4,6 +4,7 @@ import {FormInput, Button} from 'react-native-elements';
 import {NavigationActions} from 'react-navigation';
 import {connect} from 'react-redux';
 import {addCard} from "../actions/actions";
+import {updateDecks} from "../utils/api";
 
 class AddCardView extends Component {
   static navigationOptions = ({navigation}) => ({
@@ -32,6 +33,7 @@ class AddCardView extends Component {
       });
 
       this.props.addCard(deck);
+      updateDecks([...this.props.decks.filter(aDeck => aDeck.title !== deck.title), deck]);
 
       this.props.navigation.dispatch(NavigationActions.setParams({
         params: { deck },
@@ -81,9 +83,14 @@ const styles = StyleSheet.create({
     marginTop: 25
   }
 });
+
 function mapDispatchToProps(dispatch) {
   return {
     addCard: (deck) => dispatch(addCard(deck))
   }
 }
-export default connect(null, mapDispatchToProps)(AddCardView);
+
+function mapStateToProps({decks}) {
+  return {decks}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddCardView);

@@ -4,6 +4,7 @@ import {Ionicons} from '@expo/vector-icons';
 import {FormInput, FormLabel, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {newDeck} from "../actions/actions";
+import {updateDecks} from "../utils/api";
 
 class NewDeckView extends Component {
   static navigationOptions = {
@@ -37,6 +38,7 @@ class NewDeckView extends Component {
         this.setState({input: ''});
         this.props.addDeck(deck);
         this.props.navigation.navigate('ShowDeckView', {deck});
+        updateDecks([...this.props.decks, deck])
       }
     }
   };

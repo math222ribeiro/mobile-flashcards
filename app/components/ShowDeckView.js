@@ -22,7 +22,12 @@ class ShowDeckView extends Component {
   };
 
   goToQuizView = () => {
-    this.props.navigation.navigate('QuizView', {deck: this.props.navigation.state.params.deck})
+    if (this.props.navigation.state.params.deck.questions < 1) {
+      alert('You need to add a card to the deck');
+    } else {
+      this.props.navigation.navigate('QuizView', {deck: this.props.navigation.state.params.deck})
+    }
+
   };
 
   render() {

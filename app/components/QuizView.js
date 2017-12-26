@@ -45,14 +45,11 @@ class QuizView extends Component {
   };
 
   answer = (option) => {
-    console.log(option);
-
-
-    Animated.timing(                  // Animate over time
-      this.state.textOpacity,            // The animated value to drive
+    Animated.timing(
+      this.state.textOpacity,
       {
-        toValue: 0,                   // Animate to opacity: 1 (opaque)
-        duration: 300,              // Make it take a while
+        toValue: 0,
+        duration: 300,
       }
     ).start(() => {
       this.setState((prevState) => ({
@@ -61,11 +58,11 @@ class QuizView extends Component {
         question: prevState.question + 1
       }));
 
-      Animated.timing(                  // Animate over time
-        this.state.textOpacity,            // The animated value to drive
+      Animated.timing(
+        this.state.textOpacity,
         {
-          toValue: 1,                   // Animate to opacity: 1 (opaque)
-          duration: 300,              // Make it take a while
+          toValue: 1,
+          duration: 300,
         }
       ).start()
     })
@@ -82,7 +79,6 @@ class QuizView extends Component {
 
   render() {
     const {deck} = this.props.navigation.state.params;
-    console.log(JSON.stringify(this.state));
     return (
       this.state.question < deck.questions.length ? (
         <View style={styles.container}>

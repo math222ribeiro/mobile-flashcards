@@ -62,6 +62,8 @@ const Stack = StackNavigator({
   }
 );
 
+export const STORAGE_KEY = 'App:deck';
+
 export default class App extends React.Component {
   render() {
     return (
