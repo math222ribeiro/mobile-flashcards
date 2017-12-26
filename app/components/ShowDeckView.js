@@ -21,6 +21,10 @@ class ShowDeckView extends Component {
     }});
   };
 
+  goToQuizView = () => {
+    this.props.navigation.navigate('QuizView', {deck: this.props.navigation.state.params.deck})
+  };
+
   render() {
     const {deck} = this.props.navigation.state.params;
     return (
@@ -32,7 +36,7 @@ class ShowDeckView extends Component {
         </Text>
         <View style={{alignSelf: 'stretch'}}>
           <Button title="Add Card" buttonStyle={styles.addButton} color='#000' onPress={this.goToAddCardView}/>
-          <Button title="Start Quiz" buttonStyle={styles.startButton} color='#fff'/>
+          <Button title="Start Quiz" buttonStyle={styles.startButton} color='#fff' onPress={this.goToQuizView}/>
         </View>
       </View>
     )
@@ -45,17 +49,18 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     borderColor: '#000',
     borderWidth: 1,
-    marginBottom: 10
+    marginBottom: 20
   },
   startButton: {
     backgroundColor: '#000',
     borderRadius: 2,
     borderColor: '#000',
-    borderWidth: 1
+    borderWidth: 1,
+    marginBottom: 30
   },
   infoContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
   },
   deckTitle: {
     fontSize: 30,

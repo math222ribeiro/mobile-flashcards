@@ -9,6 +9,7 @@ import reducer from "./reducers/reducers";
 import ShowDeckView from './components/ShowDeckView';
 import {Constants} from 'expo';
 import AddCardView from "./components/AddCardView";
+import QuizView from "./components/QuizView";
 
 const Tabs = TabNavigator({
     Decks: {
@@ -50,6 +51,10 @@ const Stack = StackNavigator({
     AddCardView: {
       screen: AddCardView,
       path: 'card/:info'
+    },
+    QuizView: {
+      screen: QuizView,
+      path: 'quiz/:deck'
     }
   },
   {
