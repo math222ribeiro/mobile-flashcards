@@ -1,24 +1,24 @@
 import React from 'react';
-import { StyleSheet, View, Platform } from 'react-native';
+import {StyleSheet, View, Platform, StatusBar} from 'react-native';
 import {TabNavigator, StackNavigator} from 'react-navigation';
-import AppStatusBar from './components/AppStatusBar';
 import DecksView from './components/DecksView';
 import NewDeckView from './components/NewDeckView';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducer from "./reducers/reducers";
 import ShowDeckView from './components/ShowDeckView';
+import {Constants} from 'expo';
 
 const Tabs = TabNavigator({
-  Decks: {
-    screen: DecksView,
-    path: '/'
+    Decks: {
+      screen: DecksView,
+      path: '/'
+    },
+    NewDeck: {
+      screen: NewDeckView,
+      path: '/newDeck'
+    },
   },
-  NewDeck: {
-    screen: NewDeckView,
-    path: '/newDeck'
-  },
-},
   {
     animationEnabled: true,
     swipeEnabled: true,
@@ -30,35 +30,36 @@ const Tabs = TabNavigator({
 );
 
 const Stack = StackNavigator({
-  Home: {
-    screen: Tabs,
-    navigationOptions: ({navigation, tabBarLabel}) => ({
-      header: Platform.OS === 'ios' ? navigation.header : null,
-      headerStyle: {
-        backgroundColor: '#000',
-      },
-      headerTitleStyle: {
-        color: '#FFF'
-      }
-   })
-},
-  ShowDeckView: {
-    screen: ShowDeckView,
-    path: 'deck/:title',
-    navigationOptions: ({navigation}) => ({
-      headerTitle: navigation.state.params.title,
-      headerStyle: {
-        backgroundColor: '#000',
-      },
-      headerTitleStyle: {
-        color: '#FFF'
-      },
-      headerTintColor: '#FFF'
-    })}
-},
-{
-  headerMode: 'float'
-}
+    Home: {
+      screen: Tabs,
+      navigationOptions: ({navigation, tabBarLabel}) => ({
+        header: Platform.OS === 'ios' ? navigation.header : null,
+        headerStyle: {
+          backgroundColor: '#000',
+        },
+        headerTitleStyle: {
+          color: '#FFF'
+        }
+      })
+    },
+    ShowDeckView: {
+      screen: ShowDeckView,
+      path: 'deck/:title',
+      navigationOptions: ({navigation}) => ({
+        headerTitle: navigation.state.params.title,
+        headerStyle: {
+          backgroundColor: '#000',
+        },
+        headerTitleStyle: {
+          color: '#FFF'
+        },
+        headerTintColor: '#FFF'
+      })
+    }
+  },
+  {
+    headerMode: 'float'
+  }
 );
 
 export default class App extends React.Component {
@@ -66,8 +67,9 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={styles.container}>
-          {Platform.OS !== 'ios' && <AppStatusBar/>}
-          <Stack />
+          <StatusBar barStyle='light-content'/>
+          {Platform.OS !== 'ios' && <View style={{height: Constants.statusBarHeight, backgroundColor: 'black'}} />}
+          <Stack/>
         </View>
       </Provider>
     );
