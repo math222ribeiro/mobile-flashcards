@@ -50,7 +50,6 @@ class DecksView extends Component {
       placeholder="Search for deck"
       inputStyle={{color: 'black'}}
       onChangeText={(searchBarValue) => this.setState({searchBarValue})}
-      onClearText={() => console.log('clear')}
       value={this.state.searchBarValue}
     />
   );
@@ -75,7 +74,7 @@ class DecksView extends Component {
   render() {
     const {decks} = this.props;
     const {searchBarValue} = this.state;
-
+    decks.sort((a, b) => a.title > b.title);
     return (
 
       <View>

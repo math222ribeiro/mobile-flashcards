@@ -14,6 +14,13 @@ class ShowDeckView extends Component {
     headerTintColor: '#FFF'
   });
 
+  goToAddCardView = () => {
+    this.props.navigation.navigate('AddCardView', {info: {
+      deck: this.props.navigation.state.params.deck,
+      key: this.props.navigation.state.key
+    }});
+  };
+
   render() {
     const {deck} = this.props.navigation.state.params;
     return (
@@ -24,7 +31,7 @@ class ShowDeckView extends Component {
           <Text style={styles.cardNumber}>{deck.questions.length + ' cards'}</Text>
         </Text>
         <View style={{alignSelf: 'stretch'}}>
-          <Button title="Add Card" buttonStyle={styles.addButton} color='#000'/>
+          <Button title="Add Card" buttonStyle={styles.addButton} color='#000' onPress={this.goToAddCardView}/>
           <Button title="Start Quiz" buttonStyle={styles.startButton} color='#fff'/>
         </View>
       </View>

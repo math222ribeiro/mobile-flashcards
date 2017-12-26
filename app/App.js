@@ -8,6 +8,7 @@ import {createStore} from 'redux';
 import reducer from "./reducers/reducers";
 import ShowDeckView from './components/ShowDeckView';
 import {Constants} from 'expo';
+import AddCardView from "./components/AddCardView";
 
 const Tabs = TabNavigator({
     Decks: {
@@ -45,6 +46,10 @@ const Stack = StackNavigator({
     ShowDeckView: {
       screen: ShowDeckView,
       path: 'deck/:deck',
+    },
+    AddCardView: {
+      screen: AddCardView,
+      path: 'card/:info'
     }
   },
   {
