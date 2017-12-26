@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import {FormInput, FormLabel, Button} from 'react-native-elements';
-import Header from './Header';
 
 class NewDeckView extends Component {
   static navigationOptions = {
     tabBarLabel: 'New Deck',
+    title: 'New Deck',
     tabBarIcon: ({ tintColor, focused }) => <Ionicons name={focused ? 'ios-add-circle' : 'ios-add-circle-outline'} size={30} color={tintColor} />
   };
 
@@ -18,7 +18,6 @@ class NewDeckView extends Component {
     return (
       <KeyboardAvoidingView style={{justifyContent: 'space-between', flex:1, flexDirection: 'column'}}>
         <View>
-          <Header title="New Deck"/>
           <FormLabel
             labelStyle={styles.label}
           >

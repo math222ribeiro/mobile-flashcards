@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {List, ListItem, SearchBar} from 'react-native-elements';
 import {Ionicons} from '@expo/vector-icons';
-import Header from "./Header";
 import {decksLoaded} from "../actions/actions";
 
 class DecksView extends Component {
   static navigationOptions = {
     tabBarLabel: 'My Decks',
+    title: 'My Decks',
     tabBarIcon: ({tintColor, focused}) => <Ionicons name={focused ? 'ios-albums' : 'ios-albums-outline'} size={30}
                                                     color={tintColor}/>
   };
@@ -64,9 +64,14 @@ class DecksView extends Component {
       subtitle={`${deck.questions.length} cards`}
       titleStyle={styles.title}
       subtitleStyle={styles.subtitle}
+      onPress={() => this.showItemDetail(deck)}
       />
     )
   };
+
+  showItemDetail(deck) {
+    this.props.navigation.navigate('ShowDeckView', {title: deck.title})
+  }
 
   render() {
     const {decks} = this.props;
@@ -74,7 +79,6 @@ class DecksView extends Component {
 
     return (
       <View>
-        <Header title="My Decks"/>
         <List containerStyle={{marginTop: 0, borderTopWidth: 0}} key={1}>
           <FlatList
             ListHeaderComponent={this.renderSearchBar}
