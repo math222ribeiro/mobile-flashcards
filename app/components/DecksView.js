@@ -5,6 +5,7 @@ import {List, ListItem, SearchBar} from 'react-native-elements';
 import {Ionicons} from '@expo/vector-icons';
 import {decksLoaded} from "../actions/actions";
 import {fetchDecks} from "../utils/api";
+import {setLocalNotification} from "../utils/localNotifications";
 
 class DecksView extends Component {
   static navigationOptions = {
@@ -22,6 +23,8 @@ class DecksView extends Component {
       .then(decks => {
         this.props.loadDecks(decks)
       });
+
+    setLocalNotification();
   }
 
   renderSearchBar = () => (

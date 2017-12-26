@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Animated, Platform} from 'react-native';
 import {Button} from 'react-native-elements';
 import {Ionicons} from '@expo/vector-icons';
+import {clearLocalNotification, setLocalNotification} from "../utils/localNotifications";
 
 class QuizView extends Component {
   static navigationOptions = ({navigation}) => ({
@@ -21,6 +22,11 @@ class QuizView extends Component {
     showing: 'q',
     corrects: 0
   };
+
+  componentDidMount() {
+    clearLocalNotification()
+      .then(setLocalNotification)
+  }
 
   showAnswer = () => {
     Animated.timing(                  // Animate over time
