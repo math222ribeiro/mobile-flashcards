@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import {FormInput, FormLabel, Button} from 'react-native-elements';
+import {connect} from 'react-redux';
+import {newDeck} from "../actions/actions";
 
 class NewDeckView extends Component {
   static navigationOptions = {
@@ -12,6 +14,31 @@ class NewDeckView extends Component {
 
   state = {
     input: ''
+  };
+
+  createDeck = () => {
+    if (this.state.input === '') {
+      alert('Invalid Name');
+    } else {
+      let invalid = false;
+      this.props.decks.forEach((deck) => {
+        if (deck.title === this.state.input) {
+          invalid = true;
+        }
+      });
+
+      if (invalid) {
+        alert('Deck already exists');
+      } else {
+        const deck = {
+          title: this.state.input,
+          questions: []
+        };
+        this.setState({input: ''});
+        this.props.addDeck(deck);
+        this.props.navigation.navigate('ShowDeckView', {deck});
+      }
+    }
   };
 
   render() {
@@ -30,7 +57,7 @@ class NewDeckView extends Component {
             inputStyle={styles.input}
           />
         </View>
-        <Button title="Create Deck" buttonStyle={styles.button}/>
+        <Button title="Create Deck" buttonStyle={styles.button} onPress={this.createDeck}/>
       </KeyboardAvoidingView>
     )
   }
@@ -52,4 +79,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewDeckView;
+function mapDispatchToProps(dispatch) {
+  return {
+    addDeck: (deck) => dispatch(newDeck(deck))
+  }
+}
+
+function mapStateToProps({decks}) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewDeckView);

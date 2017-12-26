@@ -9,8 +9,7 @@ class DecksView extends Component {
   static navigationOptions = {
     tabBarLabel: 'My Decks',
     title: 'My Decks',
-    tabBarIcon: ({tintColor, focused}) => <Ionicons name={focused ? 'ios-albums' : 'ios-albums-outline'} size={30}
-                                                    color={tintColor}/>
+    tabBarIcon: ({tintColor, focused}) => <Ionicons name={focused ? 'ios-albums' : 'ios-albums-outline'} size={30} color={tintColor}/>
   };
 
   state = {
@@ -42,7 +41,7 @@ class DecksView extends Component {
           }
         ]
       }
-    ])
+    ]);
   }
 
   renderSearchBar = () => (
@@ -60,11 +59,11 @@ class DecksView extends Component {
     const deck = object.item;
     return (
       <ListItem
-      title={deck.title}
-      subtitle={`${deck.questions.length} cards`}
-      titleStyle={styles.title}
-      subtitleStyle={styles.subtitle}
-      onPress={() => this.showItemDetail(deck)}
+        title={deck.title}
+        subtitle={`${deck.questions.length} cards`}
+        titleStyle={styles.title}
+        subtitleStyle={styles.subtitle}
+        onPress={() => this.showItemDetail(deck)}
       />
     )
   };
@@ -78,7 +77,9 @@ class DecksView extends Component {
     const {searchBarValue} = this.state;
 
     return (
+
       <View>
+
         <List containerStyle={{marginTop: 0, borderTopWidth: 0}} key={1}>
           <FlatList
             ListHeaderComponent={this.renderSearchBar}
