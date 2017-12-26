@@ -44,21 +44,11 @@ const Stack = StackNavigator({
     },
     ShowDeckView: {
       screen: ShowDeckView,
-      path: 'deck/:title',
-      navigationOptions: ({navigation}) => ({
-        headerTitle: navigation.state.params.title,
-        headerStyle: {
-          backgroundColor: '#000',
-        },
-        headerTitleStyle: {
-          color: '#FFF'
-        },
-        headerTintColor: '#FFF'
-      })
+      path: 'deck/:deck',
     }
   },
   {
-    headerMode: 'float'
+    headerMode: Platform.OS === 'ios' ? 'float' : 'screen'
   }
 );
 

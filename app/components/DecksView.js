@@ -70,7 +70,7 @@ class DecksView extends Component {
   };
 
   showItemDetail(deck) {
-    this.props.navigation.navigate('ShowDeckView', {title: deck.title})
+    this.props.navigation.navigate('ShowDeckView', {deck})
   }
 
   render() {

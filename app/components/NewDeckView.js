@@ -39,14 +39,17 @@ class NewDeckView extends Component {
 const styles = StyleSheet.create({
   label: {
     fontSize: 32,
-    marginBottom: 30
+    marginBottom: 30,
   },
   button: {
     marginBottom: 30,
-    backgroundColor: '#000'
+    backgroundColor: '#000',
+    borderRadius: 2,
+    borderWidth: 1
   },
   input: {
     fontSize: 22
   }
 });
+
 export default NewDeckView;
